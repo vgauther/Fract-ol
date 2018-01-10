@@ -1,30 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fract.h                                            :+:      :+:    :+:   */
+/*   ft_strdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vgauther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/10 14:28:39 by vgauther          #+#    #+#             */
-/*   Updated: 2018/01/10 17:15:58 by vgauther         ###   ########.fr       */
+/*   Created: 2017/11/09 17:11:03 by vgauther          #+#    #+#             */
+/*   Updated: 2017/11/09 17:13:12 by vgauther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACT_H
-# define FRACT_H
+#include "libft.h"
 
-#include "../libft/libft.h"
-#include "../minilibx/mlx.h"
-
-typedef struct	s_mlx_data
+void	ft_strdel(char **as)
 {
-	void	*mlx;
-	void	*win;
-}				t_mlx_data;
+	void *s;
 
-void			usage(void);
-void			mandelbrot(t_mlx_data win1);
-void			julia();
-void	error_in_argv(void);
-
-#endif
+	s = (void **)as;
+	ft_memdel(s);
+}

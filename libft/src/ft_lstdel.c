@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fract.h                                            :+:      :+:    :+:   */
+/*   ft_lstdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vgauther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/10 14:28:39 by vgauther          #+#    #+#             */
-/*   Updated: 2018/01/10 17:15:58 by vgauther         ###   ########.fr       */
+/*   Created: 2017/12/04 13:00:55 by vgauther          #+#    #+#             */
+/*   Updated: 2017/12/24 15:41:25 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACT_H
-# define FRACT_H
+#include "libft.h"
 
-#include "../libft/libft.h"
-#include "../minilibx/mlx.h"
-
-typedef struct	s_mlx_data
+void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
 {
-	void	*mlx;
-	void	*win;
-}				t_mlx_data;
+	t_list	*list;
 
-void			usage(void);
-void			mandelbrot(t_mlx_data win1);
-void			julia();
-void	error_in_argv(void);
-
-#endif
+	list = *alst;
+	while (list)
+	{
+		del(list->content, list->content_size);
+		free(list);
+		list = list->next;
+	}
+	*alst = NULL;
+}

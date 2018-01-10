@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fract.h                                            :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vgauther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/10 14:28:39 by vgauther          #+#    #+#             */
-/*   Updated: 2018/01/10 17:15:58 by vgauther         ###   ########.fr       */
+/*   Created: 2017/11/08 12:50:46 by vgauther          #+#    #+#             */
+/*   Updated: 2017/11/11 17:48:16 by vgauther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACT_H
-# define FRACT_H
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
-#include "../libft/libft.h"
-#include "../minilibx/mlx.h"
-
-typedef struct	s_mlx_data
+char	*ft_strchr(const char *s, int c)
 {
-	void	*mlx;
-	void	*win;
-}				t_mlx_data;
+	int		i;
+	char	*y;
 
-void			usage(void);
-void			mandelbrot(t_mlx_data win1);
-void			julia();
-void	error_in_argv(void);
-
-#endif
+	i = 0;
+	y = (char *)s;
+	while (s[i])
+	{
+		if (s[i] == c)
+			return (&y[i]);
+		i++;
+	}
+	if (s[i] == c)
+		return (&y[i]);
+	return (NULL);
+}

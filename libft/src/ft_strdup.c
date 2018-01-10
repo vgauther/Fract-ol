@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fract.h                                            :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vgauther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/10 14:28:39 by vgauther          #+#    #+#             */
-/*   Updated: 2018/01/10 17:15:58 by vgauther         ###   ########.fr       */
+/*   Created: 2017/11/07 11:48:35 by vgauther          #+#    #+#             */
+/*   Updated: 2017/11/13 12:03:42 by vgauther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACT_H
-# define FRACT_H
+#include <stdlib.h>
 
-#include "../libft/libft.h"
-#include "../minilibx/mlx.h"
-
-typedef struct	s_mlx_data
+char	*ft_strdup(const char *src)
 {
-	void	*mlx;
-	void	*win;
-}				t_mlx_data;
+	int		i;
+	char	*str;
 
-void			usage(void);
-void			mandelbrot(t_mlx_data win1);
-void			julia();
-void	error_in_argv(void);
-
-#endif
+	i = 0;
+	while (src[i])
+		i++;
+	i++;
+	if (!(str = malloc(sizeof(char) * i)))
+		return (0);
+	i = 0;
+	while (src[i])
+	{
+		str[i] = src[i];
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
+}

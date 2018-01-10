@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fract.h                                            :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vgauther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/10 14:28:39 by vgauther          #+#    #+#             */
-/*   Updated: 2018/01/10 17:15:58 by vgauther         ###   ########.fr       */
+/*   Created: 2017/11/10 17:13:42 by vgauther          #+#    #+#             */
+/*   Updated: 2017/12/24 15:40:23 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACT_H
-# define FRACT_H
+#include "libft.h"
 
-#include "../libft/libft.h"
-#include "../minilibx/mlx.h"
-
-typedef struct	s_mlx_data
+void	ft_putnbr_fd(int n, int fd)
 {
-	void	*mlx;
-	void	*win;
-}				t_mlx_data;
-
-void			usage(void);
-void			mandelbrot(t_mlx_data win1);
-void			julia();
-void	error_in_argv(void);
-
-#endif
+	if (n == -2147483648)
+	{
+		ft_putstr_fd("-2147483648", fd);
+		return ;
+	}
+	if (n < 0)
+	{
+		ft_putchar_fd('-', fd);
+		n = n * -1;
+	}
+	if (n >= 10)
+	{
+		ft_putnbr_fd(n / 10, fd);
+	}
+	ft_putchar_fd((n % 10) + 48, fd);
+}

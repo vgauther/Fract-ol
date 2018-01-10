@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fract.h                                            :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vgauther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/10 14:28:39 by vgauther          #+#    #+#             */
-/*   Updated: 2018/01/10 17:15:58 by vgauther         ###   ########.fr       */
+/*   Created: 2017/11/09 13:09:36 by vgauther          #+#    #+#             */
+/*   Updated: 2017/11/11 18:02:27 by vgauther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACT_H
-# define FRACT_H
+#include "libft.h"
+#include <string.h>
 
-#include "../libft/libft.h"
-#include "../minilibx/mlx.h"
-
-typedef struct	s_mlx_data
+int		ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	void	*mlx;
-	void	*win;
-}				t_mlx_data;
+	const char	*ss1;
+	const char	*ss2;
+	size_t		i;
 
-void			usage(void);
-void			mandelbrot(t_mlx_data win1);
-void			julia();
-void	error_in_argv(void);
-
-#endif
+	i = 0;
+	ss1 = (const char *)s1;
+	ss2 = (const char *)s2;
+	while (i < n)
+	{
+		if (ss1[i] != ss2[i])
+			return ((unsigned char)ss1[i] - (unsigned char)ss2[i]);
+		i++;
+	}
+	return (0);
+}

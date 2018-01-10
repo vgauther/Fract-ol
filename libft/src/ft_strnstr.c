@@ -1,30 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fract.h                                            :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vgauther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/10 14:28:39 by vgauther          #+#    #+#             */
-/*   Updated: 2018/01/10 17:15:58 by vgauther         ###   ########.fr       */
+/*   Created: 2017/11/08 16:09:15 by vgauther          #+#    #+#             */
+/*   Updated: 2017/11/12 18:24:29 by vgauther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACT_H
-# define FRACT_H
+#include "libft.h"
 
-#include "../libft/libft.h"
-#include "../minilibx/mlx.h"
-
-typedef struct	s_mlx_data
+char	*ft_strnstr(const char *str, const char *to_find, size_t len)
 {
-	void	*mlx;
-	void	*win;
-}				t_mlx_data;
+	size_t	i;
+	size_t	j;
+	int		k;
 
-void			usage(void);
-void			mandelbrot(t_mlx_data win1);
-void			julia();
-void	error_in_argv(void);
-
-#endif
+	i = 0;
+	k = 0;
+	if (*(char *)to_find == '\0')
+		return ((char *)str);
+	while (str[i] && i < len)
+	{
+		j = i;
+		k = 0;
+		while (str[j] == to_find[k] && j < len)
+		{
+			j++;
+			k++;
+			if (to_find[k] == '\0')
+				return ((char *)&str[i]);
+		}
+		i++;
+	}
+	return (0);
+}

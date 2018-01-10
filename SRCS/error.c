@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fract.h                                            :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vgauther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/10 14:28:39 by vgauther          #+#    #+#             */
-/*   Updated: 2018/01/10 17:15:58 by vgauther         ###   ########.fr       */
+/*   Created: 2018/01/10 15:01:14 by vgauther          #+#    #+#             */
+/*   Updated: 2018/01/10 16:37:00 by vgauther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACT_H
-# define FRACT_H
+#include "fract.h"
 
-#include "../libft/libft.h"
-#include "../minilibx/mlx.h"
-
-typedef struct	s_mlx_data
+void	error_in_argv(void)
 {
-	void	*mlx;
-	void	*win;
-}				t_mlx_data;
+	ft_putstr("\nThe name of the fractal is not good.\n\n"); 
+	ft_putstr("LIST OF VALIDS NAMES: \n");
+	ft_putstr("- 'julia'\n- 'mandelbrot'\n");
+	exit(0);
+}
 
-void			usage(void);
-void			mandelbrot(t_mlx_data win1);
-void			julia();
-void	error_in_argv(void);
-
-#endif
+void	usage(void)
+{
+	ft_putstr("Usage : ./fractol <fractal name>\n");
+	exit(0);
+}
