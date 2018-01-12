@@ -6,7 +6,7 @@
 /*   By: vgauther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 16:16:19 by vgauther          #+#    #+#             */
-/*   Updated: 2018/01/10 17:47:05 by vgauther         ###   ########.fr       */
+/*   Updated: 2018/01/12 13:24:35 by vgauther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,33 +18,53 @@ void	mandelbrot(t_mlx_data win1)
 	int res;
 	int x;
 	int y;
-	int z;
-	int c;
+	float c_r;
+	float c_i;
+	float z_r;
+	float z_i;
 	int i;
+	float x1;
+	float x2;
+	float y1;
+	float y2;
+	float tmp;
+	float x_image;
+	float y_image;
+	float zoom;
 
+	zoom = 100;
 	x = 0;
 	y = 0;
-	res = 50;
-	while(y != 500 && x != 500)
+	x1 = -2.1;
+	x2 = 0.6;
+	y1 = -1.2;
+	y2 = 1.2;
+	res = 100;
+	x_image = (x2 - x1) * zoom;
+	y_image = (y2 - y1) * zoom;
+	while(x <= x_image)
 	{
-		i = 0;
-		z = 0;
-		c = x + i * y;
-		z = z * z + c;
-	i++;
-		printf("%s\n", "test");
-		while ((sqrt(pow(z,2) + pow(c,2)))< 2 && i < res)
+		while(y <= y_image)
 		{
-			z = z * z + c;
-			i++;
-		}
-		if(i == res)
-			mlx_pixel_put(win1.mlx, win1.win, x, y, 0xFF0000);
-		if(x == 0 && y != 0)
-		{
-			x = 0;
+			c_r = x / zoom + x1;
+			c_i = y / zoom + y1;
+			i = 0;
+			z_r = 0;
+			z_i = 0;
+			while ((z_r * z_r + z_i * z_i) < 4 && i < res)
+			{
+				tmp = z_r;
+				z_r = z_r * z_r - z_i * z_i + c_r;
+				z_i = 2 * z_i * tmp + c_i;
+				i++;
+			}
+			if(i == res)
+				mlx_pixel_put(win1.mlx, win1.win, x, y, 0);
+			else
+				mlx_pixel_put(win1.mlx, win1.win, x, y, i*255/res);
 			y++;
 		}
+		y = 0;
 		x++;
 	}
 }

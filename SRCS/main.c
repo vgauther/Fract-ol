@@ -6,7 +6,7 @@
 /*   By: vgauther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 14:28:51 by vgauther          #+#    #+#             */
-/*   Updated: 2018/01/10 17:18:26 by vgauther         ###   ########.fr       */
+/*   Updated: 2018/01/12 21:38:34 by vgauther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ int main(int argc, char **argv)
 	win1.mlx = mlx_init();
 	win1.win = mlx_new_window(win1.mlx, 500, 500, "FRACTOL");
 	if(what_is_the_fract(argv[1], win1) == 0)
-		error_in_argv();
+	  error_in_argv();
 	mlx_hook(win1.win,2,0,keyhook, NULL);
-	mlx_loop(win1.win);
+	mlx_loop(win1.mlx);
 	return 0;
 }

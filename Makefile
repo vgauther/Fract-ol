@@ -6,7 +6,7 @@
 #    By: vgauther <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/10 14:50:46 by vgauther          #+#    #+#              #
-#    Updated: 2018/01/10 16:38:42 by vgauther         ###   ########.fr        #
+#    Updated: 2018/01/11 22:32:04 by vgauther         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,14 +30,14 @@ BOLDWHITE=\033[1m\033[37m
 NAME = fractol
 
 CC = gcc
-CC_FLAGS = -Wall -Werror -Wextra
+CC_FLAGS = -Wall -Werror -Wextra -g
 FRAMWK = -framework OpenGL -framework AppKit
 
 SRC_PATH = ./SRCS/
 INC_PATH = ./INCLUDES/
 OBJ_PATH = ./OBJ/
 LFT_PATH = ./libft/
-MLX_PATH = ./minilibx/
+MLX_PATH = ./minilibx_macos/
 
 SRC = $(addprefix $(SRC_PATH),$(SRC_NAME))
 OBJ = $(addprefix $(OBJ_PATH),$(OBJ_NAME))
@@ -58,7 +58,7 @@ $(NAME): $(OBJ)
 	@echo "$(RESET)$(CYAN)MAKING MLX LIB ...$(RESET)"
 	@make -C $(MLX_PATH)
 	@echo "$(RESET)$(GREEN)MLX DONE\n$(RESET)"
-	@$(CC) -o $(NAME) $(OBJ) -lm -L $(LFT_PATH) -lft -lmlx -lm $(FRAMWK)
+	@$(CC) -o $(NAME) $(OBJ) -lm -L $(LFT_PATH) -lft -L ./minilibx_macos\/ -lmlx -lm $(FRAMWK)
 	@echo "$(RESET)$(GREEN)[✓] EXECUTABLE FRACTOL DONE$(RESET)"
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c

@@ -6,7 +6,7 @@
 /*   By: vgauther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 14:28:39 by vgauther          #+#    #+#             */
-/*   Updated: 2018/01/10 17:15:58 by vgauther         ###   ########.fr       */
+/*   Updated: 2018/01/11 22:32:46 by vgauther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FRACT_H
 
 #include "../libft/libft.h"
-#include "../minilibx/mlx.h"
+#include "../minilibx_macos/mlx.h"
 
 typedef struct	s_mlx_data
 {
