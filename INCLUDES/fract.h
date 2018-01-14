@@ -6,7 +6,7 @@
 /*   By: vgauther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 14:28:39 by vgauther          #+#    #+#             */
-/*   Updated: 2018/01/14 13:13:00 by vgauther         ###   ########.fr       */
+/*   Updated: 2018/01/14 19:07:21 by vgauther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,6 @@ void			mandelbrot(t_mlx_data win1);
 void			julia();
 void			error_in_argv(void);
 void			put_pixel_image(t_pixel pixel, t_mlx_data win1, char *str, int color);
+int				what_is_the_fract(char *str, t_mlx_data win1);
 
 #endif
