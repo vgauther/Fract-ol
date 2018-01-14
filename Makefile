@@ -6,7 +6,7 @@
 #    By: vgauther <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/10 14:50:46 by vgauther          #+#    #+#              #
-#    Updated: 2018/01/11 22:32:04 by vgauther         ###   ########.fr        #
+#    Updated: 2018/01/13 18:53:16 by vgauther         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ BOLDWHITE=\033[1m\033[37m
 NAME = fractol
 
 CC = gcc
-CC_FLAGS = -Wall -Werror -Wextra -g
+CC_FLAGS = -Wall -Werror -Wextra -g -O0
 FRAMWK = -framework OpenGL -framework AppKit
 
 SRC_PATH = ./SRCS/
@@ -47,7 +47,7 @@ OBJ_NAME = $(SRC_NAME:.c=.o)
 
 INC_NAME = fract.h
 
-SRC_NAME = main.c error.c julia.c mandelbrot.c
+SRC_NAME = main.c error.c julia.c mandelbrot.c put_pixel_image.c
 
 all: $(NAME)
 

@@ -6,65 +6,63 @@
 /*   By: vgauther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 16:16:19 by vgauther          #+#    #+#             */
-/*   Updated: 2018/01/12 13:24:35 by vgauther         ###   ########.fr       */
+/*   Updated: 2018/01/14 13:13:31 by vgauther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../INCLUDES/fract.h"
 #include "math.h"
 
+t_mandelbrot init_var(t_mlx_data win1)
+{
+	t_mandelbrot v;
+
+	v.zoom = 200;
+	v.fs.x1 = -2.1;
+	v.fs.x2 = 0.6;
+	v.fs.y1 = -1.2;
+	v.fs.y2 = 1.2;
+	v.res = 100;
+	v.fs.x_image = (v.fs.x2 - v.fs.x1) * v.zoom;
+	v.fs.y_image = (v.fs.y2 - v.fs.y1) * v.zoom;
+	v.img.img = mlx_new_image(win1.mlx, win1.size.len_win, win1.size.hei_win);
+	v.img.img_str = mlx_get_data_addr(v.img.img, &v.img.bits, &v.img.size_line, &v.img.endian);
+	return (v);
+}
+
 void	mandelbrot(t_mlx_data win1)
 {
-	int res;
-	int x;
-	int y;
-	float c_r;
-	float c_i;
-	float z_r;
-	float z_i;
-	int i;
-	float x1;
-	float x2;
-	float y1;
-	float y2;
-	float tmp;
-	float x_image;
-	float y_image;
-	float zoom;
+	t_pixel pixel;
+	t_mandelbrot v;
 
-	zoom = 100;
-	x = 0;
-	y = 0;
-	x1 = -2.1;
-	x2 = 0.6;
-	y1 = -1.2;
-	y2 = 1.2;
-	res = 100;
-	x_image = (x2 - x1) * zoom;
-	y_image = (y2 - y1) * zoom;
-	while(x <= x_image)
+	v = init_var(win1);
+	pixel.x = 0;
+	pixel.y = 0;
+	while(pixel.x <= v.fs.x_image)
 	{
-		while(y <= y_image)
+		while(pixel.y <= v.fs.y_image)
 		{
-			c_r = x / zoom + x1;
-			c_i = y / zoom + y1;
-			i = 0;
-			z_r = 0;
-			z_i = 0;
-			while ((z_r * z_r + z_i * z_i) < 4 && i < res)
+			v.c_r = pixel.x / v.zoom + v.fs.x1;
+			v.c_i = pixel.y / v.zoom + v.fs.y1;
+			v.i = 0;
+			v.z_r = 0;
+			v.z_i = 0;
+			while ((v.z_r * v.z_r + v.z_i * v.z_i) < 4 && v.i < v.res)
 			{
-				tmp = z_r;
-				z_r = z_r * z_r - z_i * z_i + c_r;
-				z_i = 2 * z_i * tmp + c_i;
-				i++;
+				v.tmp = v.z_r;
+				v.z_r = v.z_r * v.z_r - v.z_i * v.z_i + v.c_r;
+				v.z_i = 2 * v.z_i * v.tmp + v.c_i;
+				v.i++;
 			}
-			if(i == res)
-				mlx_pixel_put(win1.mlx, win1.win, x, y, 0);
+			if(v.i == v.res)
+				put_pixel_image(pixel, win1, v.img.img_str, 0);
 			else
-				mlx_pixel_put(win1.mlx, win1.win, x, y, i*255/res);
-			y++;
+				put_pixel_image(pixel, win1, v.img.img_str, v.i*65025/v.res);
+			pixel.y++;
 		}
-		y = 0;
-		x++;
+		pixel.y = 0;
+		pixel.x++;
 	}
+	mlx_put_image_to_window(win1.mlx, win1.win, v.img.img, 0, 0);
+	mlx_destroy_image(win1.mlx, v.img.img);
 }

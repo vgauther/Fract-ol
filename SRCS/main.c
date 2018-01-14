@@ -6,7 +6,7 @@
 /*   By: vgauther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 14:28:51 by vgauther          #+#    #+#             */
-/*   Updated: 2018/01/12 21:38:34 by vgauther         ###   ########.fr       */
+/*   Updated: 2018/01/13 18:55:26 by vgauther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ int		keyhook(int keycode, void *param)
 int		what_is_the_fract(char *str, t_mlx_data win1)
 {
 	if (ft_strcmp("julia", str) == 0)
+	{
+		julia(win1);
 		return(1);
+	}
 	else if (ft_strcmp("mandelbrot", str) == 0)
 	{
 		mandelbrot(win1);
@@ -38,14 +41,15 @@ int main(int argc, char **argv)
 {
 	t_mlx_data	win1;
 
-
 	if (argc != 2)
 		usage();
+	win1.size.len_win = 540;
+	win1.size.hei_win = 480;
 	win1.mlx = mlx_init();
-	win1.win = mlx_new_window(win1.mlx, 500, 500, "FRACTOL");
+	win1.win = mlx_new_window(win1.mlx, 540, 480, "FRACTOL");
 	if(what_is_the_fract(argv[1], win1) == 0)
-	  error_in_argv();
-	mlx_hook(win1.win,2,0,keyhook, NULL);
+		error_in_argv();
+	mlx_hook(win1.win,2 ,0 ,keyhook , NULL);
 	mlx_loop(win1.mlx);
 	return 0;
 }
