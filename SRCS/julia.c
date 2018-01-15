@@ -6,7 +6,7 @@
 /*   By: vgauther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 16:16:05 by vgauther          #+#    #+#             */
-/*   Updated: 2018/01/14 14:36:04 by vgauther         ###   ########.fr       */
+/*   Updated: 2018/01/15 15:19:42 by vgauther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	julia(t_mlx_data win1)
 {
-	t_mandelbrot v;
 	t_pixel pixel;
+	t_mandelbrot v;
 
 	v.fs.x1 = -1;
 	v.fs.x2 = 1;
@@ -29,9 +29,9 @@ void	julia(t_mlx_data win1)
 	v.fs.y_image = (v.fs.y2 - v.fs.y1) * v.zoom;
 	v.img.img = mlx_new_image(win1.mlx, win1.size.len_win, win1.size.hei_win);
 	v.img.img_str = mlx_get_data_addr(v.img.img, &v.img.bits, &v.img.size_line, &v.img.endian);
-	while (pixel.x < v.fs.x_image)
+	while (pixel.x < win1.size.len_win)
 	{
-		while (pixel.y < v.fs.y_image)
+		while (pixel.y < win1.size.hei_win)
 		{
 			v.i = 0;
 			v.c_r = 0.285;
@@ -49,7 +49,6 @@ void	julia(t_mlx_data win1)
 				put_pixel_image(pixel, win1, v.img.img_str, 0);
 			else
 				put_pixel_image(pixel, win1, v.img.img_str, v.i*65025/v.res);
-
 			pixel.y++;
 		}
 		pixel.y = 0;

@@ -6,7 +6,7 @@
 /*   By: vgauther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 14:28:39 by vgauther          #+#    #+#             */
-/*   Updated: 2018/01/14 19:07:21 by vgauther         ###   ########.fr       */
+/*   Updated: 2018/01/15 16:17:07 by vgauther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,18 @@ typedef struct	s_mandelbrot
 	t_fractol_size fs;
 }				t_mandelbrot;
 
+typedef struct	s_param
+{
+	t_mlx_data win1;
+	t_mandelbrot v;
+}				t_param;
+
 void			usage(void);
-void			mandelbrot(t_mlx_data win1);
+void			mandelbrot(t_mlx_data win1, t_mandelbrot v);
 void			julia();
 void			error_in_argv(void);
 void			put_pixel_image(t_pixel pixel, t_mlx_data win1, char *str, int color);
-int				what_is_the_fract(char *str, t_mlx_data win1);
+int				what_is_the_fract(char *str, t_mlx_data win1, t_mandelbrot v);
+t_mandelbrot	init_var(t_mlx_data win1);
 
 #endif

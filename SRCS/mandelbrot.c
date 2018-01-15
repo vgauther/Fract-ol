@@ -6,7 +6,7 @@
 /*   By: vgauther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 16:16:19 by vgauther          #+#    #+#             */
-/*   Updated: 2018/01/14 13:13:31 by vgauther         ###   ########.fr       */
+/*   Updated: 2018/01/15 18:03:16 by vgauther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ t_mandelbrot init_var(t_mlx_data win1)
 {
 	t_mandelbrot v;
 
-	v.zoom = 200;
+	v.zoom = 280;
 	v.fs.x1 = -2.1;
 	v.fs.x2 = 0.6;
 	v.fs.y1 = -1.2;
 	v.fs.y2 = 1.2;
-	v.res = 100;
+	v.res = 200;
 	v.fs.x_image = (v.fs.x2 - v.fs.x1) * v.zoom;
 	v.fs.y_image = (v.fs.y2 - v.fs.y1) * v.zoom;
 	v.img.img = mlx_new_image(win1.mlx, win1.size.len_win, win1.size.hei_win);
@@ -30,17 +30,16 @@ t_mandelbrot init_var(t_mlx_data win1)
 	return (v);
 }
 
-void	mandelbrot(t_mlx_data win1)
+void	mandelbrot(t_mlx_data win1, t_mandelbrot v)
 {
 	t_pixel pixel;
-	t_mandelbrot v;
 
-	v = init_var(win1);
+	//v = init_var(win1);
 	pixel.x = 0;
 	pixel.y = 0;
-	while(pixel.x <= v.fs.x_image)
+	while(pixel.x <= win1.size.len_win)
 	{
-		while(pixel.y <= v.fs.y_image)
+		while(pixel.y <= win1.size.hei_win)
 		{
 			v.c_r = pixel.x / v.zoom + v.fs.x1;
 			v.c_i = pixel.y / v.zoom + v.fs.y1;
@@ -57,7 +56,7 @@ void	mandelbrot(t_mlx_data win1)
 			if(v.i == v.res)
 				put_pixel_image(pixel, win1, v.img.img_str, 0);
 			else
-				put_pixel_image(pixel, win1, v.img.img_str, v.i*65025/v.res);
+				put_pixel_image(pixel, win1, v.img.img_str, v.i * 65025 / v.res);
 			pixel.y++;
 		}
 		pixel.y = 0;
