@@ -6,29 +6,38 @@
 /*   By: vgauther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 16:16:05 by vgauther          #+#    #+#             */
-/*   Updated: 2018/01/15 15:19:42 by vgauther         ###   ########.fr       */
+/*   Updated: 2018/01/16 15:05:45 by vgauther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../INCLUDES/fract.h"
 
-void	julia(t_mlx_data win1)
+t_mandelbrot init_var_julia(t_mlx_data win1)
 {
-	t_pixel pixel;
 	t_mandelbrot v;
 
+	v.token = 1;
 	v.fs.x1 = -1;
 	v.fs.x2 = 1;
 	v.fs.y1 = -1.2;
 	v.fs.y2 = 1.2;
 	v.zoom = 200;
 	v.res = 150;
-	pixel.x = 0;
-	pixel.y = 0;
 	v.fs.x_image = (v.fs.x2 - v.fs.x1) * v.zoom;
 	v.fs.y_image = (v.fs.y2 - v.fs.y1) * v.zoom;
+	if(win1.win)
+		return (v);
+	return (v);
+}
+
+void	julia(t_mlx_data win1, t_mandelbrot v)
+{
+	t_pixel pixel;
+
 	v.img.img = mlx_new_image(win1.mlx, win1.size.len_win, win1.size.hei_win);
 	v.img.img_str = mlx_get_data_addr(v.img.img, &v.img.bits, &v.img.size_line, &v.img.endian);
+	pixel.x = 0;
+	pixel.y = 0;
 	while (pixel.x < win1.size.len_win)
 	{
 		while (pixel.y < win1.size.hei_win)

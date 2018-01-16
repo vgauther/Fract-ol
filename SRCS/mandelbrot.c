@@ -6,7 +6,7 @@
 /*   By: vgauther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 16:16:19 by vgauther          #+#    #+#             */
-/*   Updated: 2018/01/15 18:03:16 by vgauther         ###   ########.fr       */
+/*   Updated: 2018/01/16 15:03:54 by vgauther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,9 @@ t_mandelbrot init_var(t_mlx_data win1)
 	v.res = 200;
 	v.fs.x_image = (v.fs.x2 - v.fs.x1) * v.zoom;
 	v.fs.y_image = (v.fs.y2 - v.fs.y1) * v.zoom;
-	v.img.img = mlx_new_image(win1.mlx, win1.size.len_win, win1.size.hei_win);
-	v.img.img_str = mlx_get_data_addr(v.img.img, &v.img.bits, &v.img.size_line, &v.img.endian);
+	v.token = 2;
+	if(win1.win)
+		return (v);
 	return (v);
 }
 
@@ -34,7 +35,8 @@ void	mandelbrot(t_mlx_data win1, t_mandelbrot v)
 {
 	t_pixel pixel;
 
-	//v = init_var(win1);
+	v.img.img = mlx_new_image(win1.mlx, win1.size.len_win, win1.size.hei_win);
+	v.img.img_str = mlx_get_data_addr(v.img.img, &v.img.bits, &v.img.size_line, &v.img.endian);
 	pixel.x = 0;
 	pixel.y = 0;
 	while(pixel.x <= win1.size.len_win)
