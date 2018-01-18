@@ -6,7 +6,7 @@
 /*   By: vgauther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 16:16:05 by vgauther          #+#    #+#             */
-/*   Updated: 2018/01/16 15:05:45 by vgauther         ###   ########.fr       */
+/*   Updated: 2018/01/18 14:38:37 by vgauther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ t_mandelbrot init_var_julia(t_mlx_data win1)
 {
 	t_mandelbrot v;
 
+	v.color = 255;
 	v.token = 1;
 	v.fs.x1 = -1;
 	v.fs.x2 = 1;
@@ -23,6 +24,8 @@ t_mandelbrot init_var_julia(t_mlx_data win1)
 	v.fs.y2 = 1.2;
 	v.zoom = 200;
 	v.res = 150;
+	v.c_r = 0.285;
+	v.c_i = 0.01;
 	v.fs.x_image = (v.fs.x2 - v.fs.x1) * v.zoom;
 	v.fs.y_image = (v.fs.y2 - v.fs.y1) * v.zoom;
 	if(win1.win)
@@ -43,8 +46,6 @@ void	julia(t_mlx_data win1, t_mandelbrot v)
 		while (pixel.y < win1.size.hei_win)
 		{
 			v.i = 0;
-			v.c_r = 0.285;
-			v.c_i = 0.01;
 			v.z_r = pixel.x / v.zoom + v.fs.x1;
 			v.z_i = pixel.y / v.zoom + v.fs.y1;
 			while((v.z_r * v.z_r + v.z_i * v.z_i) < 4 && v.i < v.res)
@@ -57,7 +58,7 @@ void	julia(t_mlx_data win1, t_mandelbrot v)
 			if(v.i == v.res)
 				put_pixel_image(pixel, win1, v.img.img_str, 0);
 			else
-				put_pixel_image(pixel, win1, v.img.img_str, v.i*65025/v.res);
+				put_pixel_image(pixel, win1, v.img.img_str, v.i*v.color/v.res);
 			pixel.y++;
 		}
 		pixel.y = 0;

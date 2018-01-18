@@ -6,7 +6,7 @@
 /*   By: vgauther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 14:28:39 by vgauther          #+#    #+#             */
-/*   Updated: 2018/01/16 14:54:57 by vgauther         ###   ########.fr       */
+/*   Updated: 2018/01/18 16:28:44 by vgauther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,17 +57,18 @@ typedef struct	s_fratcol_size
 
 typedef struct	s_mandelbrot
 {
-	int token;
-	float zoom;
-	float tmp;
-	int i;
-	int res;
-	float c_r;
-	float c_i;
-	float z_r;
-	float z_i;
-	t_img img;
-	t_fractol_size fs;
+	int				token;
+	float			zoom;
+	float			tmp;
+	int				i;
+	int				res;
+	float			c_r;
+	float			c_i;
+	float			z_r;
+	float			z_i;
+	int				color;
+	t_img			img;
+	t_fractol_size	fs;
 }				t_mandelbrot;
 
 typedef struct	s_param
@@ -84,5 +85,6 @@ int				what_is_the_fract(char *str, t_mlx_data win1, t_mandelbrot *v);
 t_mandelbrot	init_var(t_mlx_data win1);
 t_mandelbrot	init_var_julia(t_mlx_data win1);
 void			julia(t_mlx_data win1, t_mandelbrot v);
+void	burning_ship(t_mlx_data mlx);
 
 #endif
