@@ -6,7 +6,7 @@
 /*   By: vgauther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 14:28:39 by vgauther          #+#    #+#             */
-/*   Updated: 2018/01/18 16:28:44 by vgauther         ###   ########.fr       */
+/*   Updated: 2018/01/19 16:29:39 by vgauther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,10 @@ typedef struct	s_img
 typedef struct	s_fratcol_size
 {
 	float	x1;
-	float	x2;
 	float	y1;
-	float	y2;
-	float	x_image;
-	float	y_image;
 }				t_fractol_size;
 
-typedef struct	s_mandelbrot
+typedef struct	s_fract
 {
 	int				token;
 	float			zoom;
@@ -69,22 +65,25 @@ typedef struct	s_mandelbrot
 	int				color;
 	t_img			img;
 	t_fractol_size	fs;
-}				t_mandelbrot;
+}				t_fract;
 
 typedef struct	s_param
 {
-	t_mlx_data win1;
-	t_mandelbrot v;
+	t_mlx_data	win1;
+	t_fract		v;
 }				t_param;
 
 void			usage(void);
-void			mandelbrot(t_mlx_data win1, t_mandelbrot v);
+int				keyhook(int keycode, void *param);
+void			mandelbrot(t_mlx_data win1, t_fract v);
 void			error_in_argv(char *str);
 void			put_pixel_image(t_pixel pixel, t_mlx_data win1, char *str, int color);
-int				what_is_the_fract(char *str, t_mlx_data win1, t_mandelbrot *v);
-t_mandelbrot	init_var(t_mlx_data win1);
-t_mandelbrot	init_var_julia(t_mlx_data win1);
-void			julia(t_mlx_data win1, t_mandelbrot v);
-void	burning_ship(t_mlx_data mlx);
+int				what_is_the_fract(char *str, t_mlx_data win1, t_fract *v);
+t_fract			init_var(t_mlx_data win1);
+t_fract			init_var_julia(t_mlx_data win1);
+void			julia(t_mlx_data win1, t_fract v);
+void			burning_ship(t_mlx_data mlx);
+void			end_fract(t_mlx_data win1, t_fract v);
+void			start_fract(t_fract *v, t_mlx_data win1, t_pixel *pixel);
 
 #endif

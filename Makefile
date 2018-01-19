@@ -6,7 +6,7 @@
 #    By: vgauther <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/10 14:50:46 by vgauther          #+#    #+#              #
-#    Updated: 2018/01/18 16:30:17 by vgauther         ###   ########.fr        #
+#    Updated: 2018/01/19 15:26:31 by vgauther         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,8 @@ OBJ_NAME = $(SRC_NAME:.c=.o)
 
 INC_NAME = fract.h
 
-SRC_NAME = main.c error.c julia.c mandelbrot.c put_pixel_image.c burning_ship.c
+SRC_NAME = main.c error.c julia.c mandelbrot.c put_pixel_image.c \
+		burning_ship.c key_hook.c
 
 all: $(NAME)
 
