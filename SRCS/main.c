@@ -6,7 +6,7 @@
 /*   By: vgauther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 14:28:51 by vgauther          #+#    #+#             */
-/*   Updated: 2018/01/19 15:25:29 by vgauther         ###   ########.fr       */
+/*   Updated: 2018/01/19 18:45:05 by vgauther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int		mouse_hook(int keycode, int x, int y, void *param)
 		mandelbrot(*win1, *v);
 	else if (v->token == 1)
 		julia(*win1, *v);
+	else if (v->token == 3)
+		burning_ship(*win1, *v);
 	return (0);
 }
 
@@ -50,7 +52,8 @@ int		what_is_the_fract(char *str, t_mlx_data win1, t_fract *v)
 	}
 	else if (ft_strcmp("burning_ship", str) == 0)
 	{
-		burning_ship(win1);
+		*v = init_var_ship(win1);
+		burning_ship(win1, *v);
 		return (3);
 	}
 	return (0);
@@ -65,7 +68,8 @@ int		hook(int x, int y, void *param)
 	p = (t_param *)param;
 	mlx = &p->win1;
 	v = &p->v;
-	if (v->token == 1)
+	if (v->token == 1 && v->pause == 1 && x >= 0 && y >= 0 && x <= 800 \
+			&& y <= 660)
 	{
 		v->c_r = ((mlx->size.len_win / 2 - x) / (float)mlx->size.len_win * 2);
 		v->c_i = ((mlx->size.hei_win - y) / (float)mlx->size.hei_win);
@@ -89,7 +93,7 @@ int		main(int argc, char **argv)
 	win1.mlx = mlx_init();
 	win1.win = mlx_new_window(win1.mlx, win1.size.len_win, \
 			win1.size.hei_win, "FRACTOL");
-	v = init_var(win1);
+	v = init_var_man(win1);
 	v.color = 255;
 	what_is_the_fract(argv[1], win1, &v);
 	param.win1 = win1;

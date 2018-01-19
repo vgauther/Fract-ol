@@ -6,14 +6,14 @@
 /*   By: vgauther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 16:16:19 by vgauther          #+#    #+#             */
-/*   Updated: 2018/01/19 16:39:24 by vgauther         ###   ########.fr       */
+/*   Updated: 2018/01/19 18:31:32 by vgauther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../INCLUDES/fract.h"
 #include "math.h"
 
-t_fract			init_var(t_mlx_data win1)
+t_fract			init_var_man(t_mlx_data win1)
 {
 	t_fract v;
 
@@ -67,7 +67,7 @@ void			mandelbrot(t_mlx_data win1, t_fract v)
 				put_pixel_image(pixel, win1, v.img.img_str, 0);
 			else
 				put_pixel_image(pixel, win1, v.img.img_str, \
-						v.i * v.color / v.res);
+						v.i * v.color / 255 << 10);
 		}
 		pixel.x++;
 	}

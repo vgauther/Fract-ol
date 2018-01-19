@@ -6,7 +6,7 @@
 /*   By: vgauther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 16:16:05 by vgauther          #+#    #+#             */
-/*   Updated: 2018/01/19 16:38:24 by vgauther         ###   ########.fr       */
+/*   Updated: 2018/01/19 18:45:27 by vgauther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,13 @@ t_fract			init_var_julia(t_mlx_data win1)
 
 	v.color = 255;
 	v.token = 1;
-	v.fs.x1 = -1.6;
-	v.fs.y1 = -1.25;
-	v.zoom = 250;
+	v.fs.x1 = -1.5;
+	v.fs.y1 = -1.20;
+	v.zoom = 275;
 	v.res = 150;
 	v.c_r = 0.285;
 	v.c_i = 0.01;
+	v.pause = 1;
 	if (win1.win)
 		return (v);
 	return (v);
@@ -64,7 +65,7 @@ void			julia(t_mlx_data win1, t_fract v)
 				put_pixel_image(pixel, win1, v.img.img_str, 0);
 			else
 				put_pixel_image(pixel, win1, v.img.img_str, \
-						v.i * v.color / v.res);
+						v.i * v.color / 255 << 10);
 		}
 		pixel.x++;
 	}

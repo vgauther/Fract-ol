@@ -6,7 +6,7 @@
 /*   By: vgauther <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 15:21:06 by vgauther          #+#    #+#             */
-/*   Updated: 2018/01/19 16:14:58 by vgauther         ###   ########.fr       */
+/*   Updated: 2018/01/19 18:28:51 by vgauther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		valid_keycode(int keycode)
 		return (1);
 	if (keycode == 2 || keycode == 0 || keycode == 1 || keycode == 13)
 		return (1);
-	if (keycode == 8)
+	if (keycode == 8 || keycode == 35)
 		return (1);
 	return (0);
 }
@@ -50,6 +50,8 @@ void	var(t_fract *v, int keycode)
 		v->fs.y1 -= 0.1;
 	if (keycode == 8)
 		v->color = color_v(v->color);
+	if (keycode == 35)
+		v->pause = (v->pause == 0) ? 1 : 0;
 }
 
 void	token_is_fract(t_fract *v, t_param *p, int tmp)
@@ -57,7 +59,7 @@ void	token_is_fract(t_fract *v, t_param *p, int tmp)
 	if (v->token == 2)
 	{
 		if (tmp == 42)
-			*v = init_var(p->win1);
+			*v = init_var_man(p->win1);
 		mandelbrot(p->win1, *v);
 	}
 	if (v->token == 1)
@@ -65,6 +67,12 @@ void	token_is_fract(t_fract *v, t_param *p, int tmp)
 		if (tmp == 42)
 			*v = init_var_julia(p->win1);
 		julia(p->win1, *v);
+	}
+	if (v->token == 3)
+	{
+		if (tmp == 42)
+			*v = init_var_ship(p->win1);
+		burning_ship(p->win1, *v);
 	}
 }
 
@@ -82,7 +90,7 @@ int		keyhook(int keycode, void *param)
 	if ((valid_keycode(keycode)) == 0)
 		return (0);
 	mlx_clear_window(p->win1.mlx, p->win1.win);
-	if (keycode == 124 && v->token < 2)
+	if (keycode == 124 && v->token < 3)
 		v->token++;
 	else if (keycode == 123 && v->token > 1)
 		v->token--;
